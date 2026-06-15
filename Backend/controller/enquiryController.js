@@ -1,7 +1,7 @@
 const Enquiry = require("../models/model");
 
 const submitEnquiry = async (req, res) => {
-    const { name, email, phone } = req.body;
+    const { name, email, phone } = req.body || {};
 
     if (!name || !email || !phone) {
         return res.status(400).json({
@@ -30,15 +30,16 @@ const submitEnquiry = async (req, res) => {
         if (newEnquiry) {
             await newEnquiry.save();
             return res.status(200).json({
-                success: false,
+                success: true,
                 message: "Enquiry submitted successfully!",
             });
         }
     }
     catch (err) {
+        console.log("SAVE ERROR:", err);
         return res.status(500).json({
             success: false,
-            message: "Server error. Please try again.",
+            message: err.message,
         });
     }
 };
