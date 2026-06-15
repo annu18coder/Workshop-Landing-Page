@@ -11,6 +11,7 @@ app.use(cors({
 }));
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 console.log("PORT:", process.env.PORT);
 console.log("MONGO:", process.env.MONGO_URI);

@@ -45,7 +45,10 @@ const RegistrationForm = () => {
     try {
       setLoading(true);
       setError("");
-      await axios.post("/api/enquiry", formData);
+      axios.post(
+ `${import.meta.env.VITE_PORT}/api/enquiry`,
+ formData
+)
       setSuccess(true);
       setFormData({ name: "", email: "", phone: "" });
     } catch (err) {
@@ -91,7 +94,7 @@ const RegistrationForm = () => {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              placeholder="Enter your name"
+              placeholder="Enter name"
               className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </div>
