@@ -9,6 +9,7 @@ app.use(cors({
   origin: process.env.CLIENT_URL || 'http://localhost:5173',
   methods: ['GET', 'POST'],
 }));
+
 app.use(express.json());
 
 console.log("PORT:", process.env.PORT);
@@ -20,11 +21,11 @@ app.use("/api", enquiryRoute);
 mongoose.connect(process.env.MONGO_URI)
 .then(() => {
     console.log("✅ MongoDB Connected");
-app.listen(process.env.PORT|| 3000, () => {
-    console.log(`🚀 Server running on  http://localhost:${process.env.PORT || 3000}`);
-  })
 })
 .catch((err) => {
     console.log("❌ MongoDB Error:", err);
 });
 
+app.listen(process.env.PORT || 3000, () => {
+    console.log(`🚀 Server running on port ${process.env.PORT || 3000}`);
+});
